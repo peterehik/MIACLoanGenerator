@@ -1,0 +1,26 @@
+﻿@model List<LoanGenerator.BusinessLogic.Entities.Loan>
+
+<hr/>
+<div class="container">
+    <h2>Saved Loans 
+        <button id="createCashFlowBtn" style="float:right;display:inline-block;" class="btn">Create Cash Flow</button>
+        <button id="clearLoansBtn" style="float:right;margin-right:10px;display:inline-block;" class="btn btn-danger">Clear Loans</button>
+    </h2>
+
+    <table class="table">
+        <tr>
+            <th>Amount</th>
+            <th>Term (months)</th>
+            <th>Interest Rate</th>
+        </tr>
+        @foreach (var loan in Model)
+        {
+            <tr>
+                <td>@string.Format("{0:C}", loan.Amount)</td>
+                <td>@string.Format("{0:N0}", loan.Months)</td>
+                <td>@string.Format("{0:0.##%}", loan.Rate / 100)</td>
+            </tr>
+        }
+       
+    </table>
+</div>

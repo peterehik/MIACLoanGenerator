@@ -1,0 +1,30 @@
+﻿@model LoanGenerator.BusinessLogic.RequestModels.CashFlowResponse
+@{
+    var cashFlowItems = Model.CashFlowItems;
+    cashFlowItems.Add(Model.PoolLevel);
+}
+
+<div class="container">
+    <h2>Cash Flow</h2>
+    @foreach (var loan in cashFlowItems)
+    {
+        <table class="table table-striped">
+            <caption style="text-align:left">@loan.Title</caption>
+            <tr>
+                <th>Month</th>
+                <th>Interest</th>
+                <th>Principal</th>
+                <th>Remaining Balance</th>
+            </tr>
+            @foreach (var month in loan.Values)
+            {
+                <tr>
+                    <td>@month.Month</td>
+                    <td>@string.Format("{0:C}", month.Interest)</td>
+                    <td>@string.Format("{0:C}", month.Principal)</td>
+                    <td>@string.Format("{0:C}", month.RemainingBalance)</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
